@@ -6,7 +6,9 @@ Easily work with Appwrite databases.
 
 ## Documentation
 
-The official documentation: [dbwritejs.com](https://dbwritejs.com). Need to buy a domain.
+Documentation at: [sithu-khant.github.io/dbwrite/](https://sithu-khant.github.io/dbwrite/#/).
+
+> Plan to have: [dbwritejs.com](https://dbwritejs.com). Need to buy a domain.
 
 We used [Docsify](https://docsify.js.org) for our documentation.
 
@@ -27,6 +29,7 @@ npm install appwrite
 ## Resources
 
 - [Appwrite Databases Server docs](https://appwrite.io/docs/references/cloud/server-nodejs/databases)
+- [How to make your own NPM package](https://www.youtube.com/watch?v=xnfdm-s8adI)
 
 # Suggestions or Issues?
 
@@ -46,5 +49,6 @@ All the new contributors are always welcome! Please make a pull request. Please 
 
 - Sun Dec 29, 2024
   - (12.29.01) - Initialized the docs using `docsify`.
+  - (12.29.02) - Initialized the npm package project structure.
 - Sat Dec 28, 2024
   - (first-commit) - Started this project.

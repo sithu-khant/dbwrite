@@ -1,0 +1,27 @@
+{
+  "name": "dbwrite",
+  "description": "Easily work with Appwrite databases",
+  "version": "0.0.1",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "tsup": "^8.3.5"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "keywords": [
+    "appwrite",
+    "database",
+    "collection",
+    "document",
+    "odm"
+  ],
+  "author": "Sithu Khant",
+  "license": "MIT"
+}
