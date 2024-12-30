@@ -5,6 +5,10 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "homepage": "https://dbwrite.js.org",
+  "repository": {
+    "url": "https://github.com/sithu-khant/dbwrite"
+  },
   "scripts": {
     "build": "tsup"
   },
