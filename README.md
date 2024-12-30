@@ -6,11 +6,9 @@ Easily work with Appwrite databases.
 
 ## Documentation
 
-Documentation at: [sithu-khant.github.io/dbwrite](https://sithu-khant.github.io/dbwrite/#/).
+Documentation at: [dbwrite.js.org](https://dbwrite.js.org/#/).
 
-> Will soon available at `dbwrite.js.org`. Waiting for approval.
-
-We used [Docsify](https://docsify.js.org) for our documentation.
+We used [Docsify](https://docsify.js.org) for our documentation and subdomain from [JS.org](https://js.org).
 
 ## Installation
 
@@ -54,6 +52,7 @@ All the new contributors are always welcome! Please make a pull request. Please 
   - (12.30.04) - Committed for safety.
   - (12.30.05) - Started creating `dbwrite.ts` class.
   - (12.30.06) - Moved `CNAME` to the `docs` folder.
+  - (12.30.07) - `dbwrite.js.org` is now alive.
 - Sun Dec 29, 2024
   - (12.29.01) - Initialized the docs using `docsify`.
   - (12.29.02) - Initialized the npm package project structure.
