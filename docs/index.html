@@ -46,6 +46,12 @@
           // between multiple websites under the same domain
           namespace: "website-1",
         },
+
+        timeUpdater: {
+          text: ">last update time: {docsify-updated}",
+          formatUpdated: "{YYYY}/{MM}/{DD}",
+          whereToPlace: "bottom", // "top" or "bottom", default to "bottom"
+        },
       };
     </script>
     <!-- Docsify v4 -->
@@ -53,5 +59,6 @@
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
     <script src="//polyfill.io/v3/polyfill.min.js?features=String.prototype.normalize"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docsify-updated/src/time-updater.min.js"></script>
   </body>
 </html>
