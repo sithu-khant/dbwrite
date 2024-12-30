@@ -15,7 +15,7 @@ bun add appwrite
 ### Npm
 
 ```bash
-npm install appwrite
+npm i appwrite
 ```
 
 ## License

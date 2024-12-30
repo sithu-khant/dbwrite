@@ -23,7 +23,7 @@ bun add appwrite
 ### Npm
 
 ```bash
-npm install appwrite
+npm i appwrite
 ```
 
 ## Resources
@@ -50,6 +50,7 @@ All the new contributors are always welcome! Please make a pull request. Please 
 - Mon Dec 30, 2024
   - (12.30.01) - Added `CNAME` for `dbwrite.js.org` domain.
   - (12.30.02) - Released test version `0.0.1` to npm.
+  - (12.30.03) - Cleaned codes.
 - Sun Dec 29, 2024
   - (12.29.01) - Initialized the docs using `docsify`.
   - (12.29.02) - Initialized the npm package project structure.

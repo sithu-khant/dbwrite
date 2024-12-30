@@ -1,6 +1,8 @@
 /src
 /node_modules
+/docs
 
+CNAME
 .env
 .DS_Store
 
