@@ -30,7 +30,7 @@ export class dbwrite {
     return this.client;
   }
 
-  protected static getDatabases(): Databases {
+  static getDatabases(): Databases {
     this.checkConnection("getDatabases");
     return new Databases(this.getClient());
   }

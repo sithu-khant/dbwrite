@@ -24,6 +24,7 @@ const schema = new Schema(
 
 const model = new Model(
   process.env.DATABASE_ID!,
+  process.env.DATABASE_NAME!,
   process.env.COLLECTION_ID!,
   process.env.COLLECTION_NAME!,
   schema

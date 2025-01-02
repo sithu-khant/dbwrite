@@ -5,12 +5,14 @@ import type { Schema } from "./schema";
 
 export class Model extends dbwrite {
   private databaseId: string;
+  private databaseName: string;
   private collectionId: string;
   private collectionName: string;
   private schema: Schema;
 
   constructor(
     databaseId: string,
+    databaseName: string,
     collectionId: string,
     collectionName: string,
     schema: Schema
@@ -18,9 +20,12 @@ export class Model extends dbwrite {
     super();
 
     this.databaseId = databaseId;
+    this.databaseName = databaseName;
     this.collectionId = collectionId;
     this.collectionName = collectionName;
     this.schema = schema;
+
+    dbwrite.createDatabase(databaseId, databaseName);
   }
 
   async getDocument(
