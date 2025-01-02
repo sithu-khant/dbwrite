@@ -67,8 +67,32 @@ export class dbwrite {
   static async getDatabase(databaseId: string): Promise<Models.Database> {
     dbwrite.checkConnection("getDatabase()");
 
-    const database = await this.databases.get(databaseId);
+    const result = await this.databases.get(databaseId);
 
-    return database;
+    return result;
+  }
+
+  static async updateDatabase(
+    databaseId: string,
+    databaseName: string,
+    enabled = false
+  ): Promise<Models.Database> {
+    dbwrite.checkConnection("updateDatabase()");
+
+    const result = await this.databases.update(
+      databaseId,
+      databaseName,
+      enabled
+    );
+
+    return result;
+  }
+
+  static async deleteDatabase(databaseId: string): Promise<{}> {
+    dbwrite.checkConnection("updateDatabase()");
+
+    const result = await this.databases.delete(databaseId);
+
+    return result;
   }
 }
