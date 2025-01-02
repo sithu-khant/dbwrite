@@ -27,12 +27,10 @@ Has access to
 
 ## Codes
 
-```
-
+```js
 const NoteDB = new Database(databaseId, databaseName);
 
 const NoteSchema = new Schema({});
 
 const NoteModel = new Model(NoteDB, collectionId, collectionName, NoteSchema);
-
 ```

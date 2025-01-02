@@ -30,7 +30,6 @@
   "author": "Sithu Khant",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^16.4.7",
     "node-appwrite": "^14.1.0"
   }
 }

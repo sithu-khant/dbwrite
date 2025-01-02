@@ -1,7 +1,4 @@
 import { Client, Databases, type Models } from "node-appwrite";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 export class dbwrite {
   private static databases: Databases;
