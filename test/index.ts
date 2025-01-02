@@ -36,3 +36,5 @@ dbwrite.connect(
 );
 
 dbwrite.createDatabase(process.env.DATABASE_ID!, process.env.DATABASE_NAME!);
+// dbwrite.deleteDatabase(process.env.DATABASE_ID!);
+// dbwrite.getDatabases();

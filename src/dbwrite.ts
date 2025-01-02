@@ -6,6 +6,7 @@ dotenv.config();
 export class dbwrite {
   protected static databases: Databases;
   protected static client: Client;
+  protected static databaseList: Record<string, string> = {};
 
   static connect(endpoint: string, projectId: string, apiKey: string) {
     const client = new Client()
@@ -49,13 +50,14 @@ export class dbwrite {
   }
 
   static async createDatabase(
-    databaseName: string,
-    databaseId: string
+    databaseId: string,
+    databaseName: string
   ): Promise<any> {
     dbwrite.checkConnection("createDatabase()");
 
-    const isAlreadyExist = await this.databases.get(databaseId);
-    if (!isAlreadyExist) {
+    if (!this.databaseList[databaseId]) {
+      this.databaseList[databaseId] = databaseName;
+
       try {
         await this.databases.create(databaseId, databaseName);
       } catch (error) {
@@ -89,7 +91,7 @@ export class dbwrite {
   }
 
   static async deleteDatabase(databaseId: string): Promise<{}> {
-    dbwrite.checkConnection("updateDatabase()");
+    dbwrite.checkConnection("deleteDatabase()");
 
     const result = await this.databases.delete(databaseId);
 
