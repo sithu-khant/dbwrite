@@ -64,6 +64,7 @@ All the new contributors are always welcome! Please make a pull request. Please 
   - (1.2.16) - Create a new `database` class.
   - (1.2.17) - Cleaned codes.
   - (1.2.18) - Cleaned codes.
+  - (1.2.19) - Fixed bug: not creating a collection after model initialization.
 - Mon Dec 30, 2024
   - (12.30.01) - Added `CNAME` for `dbwrite.js.org` domain.
   - (12.30.02) - Released test version `0.0.1` to npm.

@@ -1,3 +1,4 @@
+import { Database } from "../src/database";
 import { dbwrite } from "../src/dbwrite";
 import { Model } from "../src/model";
 import { Schema } from "../src/schema";
@@ -22,25 +23,31 @@ const schema = new Schema(
   { timestamps: true }
 );
 
-const model = new Model(
-  process.env.DATABASE_ID!,
-  process.env.DATABASE_NAME!,
-  process.env.COLLECTION_ID!,
-  process.env.COLLECTION_NAME!,
-  schema
-);
-
 dbwrite.connect(
   process.env.APPWRITE_ENDPOINT!,
   process.env.APPWRITE_PROJECT!,
   process.env.APPWRITE_KEY!
 );
 
-await dbwrite.createDatabase(
+const SubscriptionDB = new Database(
   process.env.DATABASE_ID!,
   process.env.DATABASE_NAME!
 );
+
+const SubscriptionModel = new Model(
+  SubscriptionDB,
+  process.env.COLLECTION_ID!,
+  process.env.COLLECTION_NAME!,
+  schema
+);
+
+// await dbwrite.createDatabase(
+//   process.env.DATABASE_ID!,
+//   process.env.DATABASE_NAME!
+// );
+
 // dbwrite.deleteDatabase(process.env.DATABASE_ID!);
 // dbwrite.getDatabase(process.env.DATABASE_ID!);
 // console.log(await dbwrite.getDatabase(process.env.DATABASE_ID!));
-console.log(await dbwrite.listDatabases());
+// console.log(await dbwrite.listDatabases());
+console.log(await SubscriptionDB.listCollections());

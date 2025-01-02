@@ -22,6 +22,8 @@ export class Model extends dbwrite {
     this.collectionId = collectionId;
     this.collectionName = collectionName;
     this.schema = schema;
+
+    database.createCollection(this.collectionId, this.collectionName);
   }
 
   async getDocument(
