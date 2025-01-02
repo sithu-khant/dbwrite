@@ -15,6 +15,14 @@ export class Database extends dbwrite {
     dbwrite.createDatabase(databaseId, databaseName);
   }
 
+  getId(): string {
+    return this.databaseId;
+  }
+
+  getName(): string {
+    return this.databaseName;
+  }
+
   async listCollections(
     queries: [] = [],
     search: string = ""

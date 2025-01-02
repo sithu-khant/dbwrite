@@ -24,3 +24,15 @@ Has access to
 - `Database` scope permission.
 
 ![Appwrite API checklist](./images/quick-start/api-checklist.png)
+
+## Codes
+
+```
+
+const NoteDB = new Database(databaseId, databaseName);
+
+const NoteSchema = new Schema({});
+
+const NoteModel = new Model(NoteDB, collectionId, collectionName, NoteSchema);
+
+```

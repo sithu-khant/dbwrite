@@ -2,30 +2,26 @@ import { ID, type Models } from "node-appwrite";
 
 import { dbwrite } from "./dbwrite";
 import type { Schema } from "./schema";
+import type { Database } from "./database";
 
 export class Model extends dbwrite {
-  private databaseId: string;
-  private databaseName: string;
+  private database: Database;
   private collectionId: string;
   private collectionName: string;
   private schema: Schema;
 
   constructor(
-    databaseId: string,
-    databaseName: string,
+    database: Database,
     collectionId: string,
     collectionName: string,
     schema: Schema
   ) {
     super();
 
-    this.databaseId = databaseId;
-    this.databaseName = databaseName;
+    this.database = database;
     this.collectionId = collectionId;
     this.collectionName = collectionName;
     this.schema = schema;
-
-    dbwrite.createDatabase(databaseId, databaseName);
   }
 
   async getDocument(
@@ -36,7 +32,7 @@ export class Model extends dbwrite {
 
     const databases = dbwrite.initDatabases();
     const document = await databases.getDocument(
-      this.databaseId,
+      this.database.getId(),
       this.collectionId,
       documentId,
       queries
@@ -50,7 +46,7 @@ export class Model extends dbwrite {
 
     const databases = dbwrite.initDatabases();
     const documents = await databases.listDocuments(
-      this.databaseId,
+      this.database.getId(),
       this.collectionId,
       queries
     );
@@ -79,7 +75,7 @@ export class Model extends dbwrite {
 
     const databases = dbwrite.initDatabases();
     const document = await databases.createDocument(
-      this.databaseId,
+      this.database.getId(),
       this.collectionId,
       ID.unique(),
       data
