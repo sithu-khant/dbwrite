@@ -36,5 +36,3 @@ dbwrite.connect(
 );
 
 dbwrite.createDatabase(process.env.DATABASE_ID!, process.env.DATABASE_NAME!);
-
-console.log(dbwrite.listDatabases);

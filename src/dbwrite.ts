@@ -1,14 +1,11 @@
-import { Client, Databases } from "node-appwrite";
+import { Client, Databases, type Models } from "node-appwrite";
 import dotenv from "dotenv";
-
-import type { Model } from "./model";
 
 dotenv.config();
 
 export class dbwrite {
   private static databases: Databases;
   private static client: Client;
-  private static databaseList: Record<string, string> = {};
 
   static connect(endpoint: string, projectId: string, apiKey: string) {
     const client = new Client()
@@ -40,26 +37,38 @@ export class dbwrite {
     return new Databases(this.getClient());
   }
 
-  static get listDatabases() {
-    return dbwrite.databaseList;
+  static async listDatabases(
+    queries: [] = [],
+    search: string = "<SEARCH>"
+  ): Promise<Models.DatabaseList> {
+    dbwrite.checkConnection("createDatabase()");
+
+    const databases = await this.databases.list(queries, search);
+
+    return databases;
   }
 
   static async createDatabase(
-    databaseId: string,
-    databaseName: string
+    databaseName: string,
+    databaseId: string
   ): Promise<any> {
     dbwrite.checkConnection("createDatabase()");
 
-    if (!this.databaseList[databaseId]) {
-      this.databaseList[databaseId] = databaseName;
-
+    const isAlreadyExist = await this.databases.get(databaseId);
+    if (!isAlreadyExist) {
       try {
         await this.databases.create(databaseId, databaseName);
       } catch (error) {
         throw new Error(`Dbwrite: Error creating an database: ${error}`);
       }
     }
+  }
 
-    return;
+  static async getDatabase(databaseId: string): Promise<Models.Database> {
+    dbwrite.checkConnection("createDatabase()");
+
+    const database = await this.databases.get(databaseId);
+
+    return database;
   }
 }
