@@ -10,7 +10,8 @@
     "url": "https://github.com/sithu-khant/dbwrite"
   },
   "scripts": {
-    "build": "tsup"
+    "build": "tsup",
+    "test": "bun run ./test/index.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",

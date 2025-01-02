@@ -40,15 +40,14 @@ export class dbwrite {
     return new Databases(this.getClient());
   }
 
-  get listDatabases() {
+  static get listDatabases() {
     return dbwrite.databaseList;
   }
 
-  private static async createDatabase(
+  static async createDatabase(
     databaseId: string,
-    databaseName: string,
-    model: Model
-  ): Promise<void> {
+    databaseName: string
+  ): Promise<any> {
     dbwrite.checkConnection("createDatabase()");
 
     if (!this.databaseList[databaseId]) {
@@ -60,5 +59,7 @@ export class dbwrite {
         throw new Error(`Dbwrite: Error creating an database: ${error}`);
       }
     }
+
+    return;
   }
 }
