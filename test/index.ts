@@ -35,6 +35,10 @@ dbwrite.connect(
   process.env.APPWRITE_KEY!
 );
 
-dbwrite.createDatabase(process.env.DATABASE_ID!, process.env.DATABASE_NAME!);
+await dbwrite.createDatabase(
+  process.env.DATABASE_ID!,
+  process.env.DATABASE_NAME!
+);
 // dbwrite.deleteDatabase(process.env.DATABASE_ID!);
-// dbwrite.getDatabases();
+// dbwrite.getDatabase(process.env.DATABASE_ID!);
+console.log(await dbwrite.listDatabases());

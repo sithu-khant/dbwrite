@@ -55,6 +55,7 @@ All the new contributors are always welcome! Please make a pull request. Please 
   - (1.2.07) - Cleaned codes.
   - (1.2.08) - Replicated original Appwrite database management codes.
   - (1.2.09) - Tested codes.
+  - (1.2.10) - Committed for safety.
 - Mon Dec 30, 2024
   - (12.30.01) - Added `CNAME` for `dbwrite.js.org` domain.
   - (12.30.02) - Released test version `0.0.1` to npm.

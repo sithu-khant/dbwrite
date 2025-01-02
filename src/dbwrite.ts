@@ -26,13 +26,13 @@ export class dbwrite {
     }
   }
 
-  static getClient(): Client {
+  protected static getClient(): Client {
     dbwrite.checkConnection("getClient()");
 
     return this.client;
   }
 
-  static getDatabases(): Databases {
+  protected static getDatabases(): Databases {
     dbwrite.checkConnection("getDatabases()");
 
     return new Databases(this.getClient());
@@ -56,13 +56,13 @@ export class dbwrite {
     dbwrite.checkConnection("createDatabase()");
 
     if (!this.databaseList[databaseId]) {
-      this.databaseList[databaseId] = databaseName;
+      return;
+    }
 
-      try {
-        await this.databases.create(databaseId, databaseName);
-      } catch (error) {
-        throw new Error(`Dbwrite: Error creating an database: ${error}`);
-      }
+    try {
+      await this.databases.create(databaseId, databaseName);
+    } catch (error) {
+      throw new Error(`Dbwrite: Error creating an database: ${error}`);
     }
   }
 
