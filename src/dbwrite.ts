@@ -6,7 +6,6 @@ dotenv.config();
 export class dbwrite {
   private static databases: Databases;
   private static client: Client;
-  private static databaseList: Record<string, string> = {};
 
   static connect(endpoint: string, projectId: string, apiKey: string): void {
     this.client = new Client()
@@ -25,14 +24,14 @@ export class dbwrite {
     }
   }
 
-  protected static getClient(): Client {
-    this.checkConnection("getClient");
+  protected static initClient(): Client {
+    this.checkConnection("initClient");
     return this.client;
   }
 
-  static getDatabases(): Databases {
-    this.checkConnection("getDatabases");
-    return new Databases(this.getClient());
+  static initDatabases(): Databases {
+    this.checkConnection("initDatabases");
+    return new Databases(this.initClient());
   }
 
   static async listDatabases(
@@ -59,7 +58,6 @@ export class dbwrite {
 
     try {
       await this.databases.create(databaseId, databaseName, enabled);
-      this.databaseList[databaseId] = databaseName;
     } catch (error) {
       throw new Error(`Dbwrite: Error creating database: ${error}`);
     }
@@ -89,71 +87,5 @@ export class dbwrite {
   static async deleteDatabase(databaseId: string): Promise<void> {
     this.checkConnection("deleteDatabase");
     await this.databases.delete(databaseId);
-  }
-
-  static async listCollections(
-    databaseId: string,
-    queries: [] = [],
-    search: string = ""
-  ): Promise<Models.CollectionList> {
-    this.checkConnection("listCollections");
-
-    return search !== ""
-      ? this.databases.listCollections(databaseId, queries, search)
-      : this.databases.listCollections(databaseId, queries);
-  }
-
-  static async getCollection(
-    databaseId: string,
-    collectionId: string
-  ): Promise<Models.Collection> {
-    this.checkConnection("getCollection");
-    return this.databases.getCollection(databaseId, collectionId);
-  }
-
-  static async createCollection(
-    databaseId: string,
-    collectionId: string,
-    collectionName: string,
-    permissions: string[] = [],
-    documentSecurity: boolean = false,
-    enabled: boolean = false
-  ): Promise<Models.Collection> {
-    this.checkConnection("createCollection");
-    return this.databases.createCollection(
-      databaseId,
-      collectionId,
-      collectionName,
-      permissions,
-      documentSecurity,
-      enabled
-    );
-  }
-
-  static async updateCollection(
-    databaseId: string,
-    collectionId: string,
-    collectionName: string,
-    permissions: string[] = [],
-    documentSecurity: boolean = false,
-    enabled: boolean = false
-  ): Promise<Models.Collection> {
-    this.checkConnection("updateCollection");
-    return this.databases.updateCollection(
-      databaseId,
-      collectionId,
-      collectionName,
-      permissions,
-      documentSecurity,
-      enabled
-    );
-  }
-
-  static async deleteCollection(
-    databaseId: string,
-    collectionId: string
-  ): Promise<void> {
-    this.checkConnection("deleteCollection");
-    await this.databases.deleteCollection(databaseId, collectionId);
   }
 }

@@ -34,7 +34,7 @@ export class Model extends dbwrite {
   ): Promise<Models.Document> {
     dbwrite.checkConnection("getDocument()");
 
-    const databases = dbwrite.getDatabases();
+    const databases = dbwrite.initDatabases();
     const document = await databases.getDocument(
       this.databaseId,
       this.collectionId,
@@ -48,7 +48,7 @@ export class Model extends dbwrite {
   async listDocuments(queries: [] = []): Promise<Models.Document[]> {
     dbwrite.checkConnection("listDocuments()");
 
-    const databases = dbwrite.getDatabases();
+    const databases = dbwrite.initDatabases();
     const documents = await databases.listDocuments(
       this.databaseId,
       this.collectionId,
@@ -77,7 +77,7 @@ export class Model extends dbwrite {
     dbwrite.checkConnection("save()");
     this.validateSchema(data);
 
-    const databases = dbwrite.getDatabases();
+    const databases = dbwrite.initDatabases();
     const document = await databases.createDocument(
       this.databaseId,
       this.collectionId,
