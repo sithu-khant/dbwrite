@@ -18,16 +18,20 @@ export class dbwrite {
     this.databases = new Databases(client);
   }
 
+  static checkConnection(func: string): void {
+    if (!this.databases) {
+      throw new Error(
+        `Dbwrite: Please call "dbwrite.connect()" first before calling ${func}.`
+      );
+    }
+  }
+
   private static async createDatabase(
     databaseId: string,
     databaseName: string,
     model: Model
   ): Promise<void> {
-    if (!this.databases) {
-      throw new Error(
-        `Dbwrite: Please call connect() first before calling createDateabse.`
-      );
-    }
+    dbwrite.checkConnection("createDatabase()");
 
     if (!this.models[databaseId]) {
       this.models[databaseId] = model;
