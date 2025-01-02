@@ -4,60 +4,53 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export class dbwrite {
-  protected static databases: Databases;
-  protected static client: Client;
-  protected static databaseList: Record<string, string> = {};
+  private static databases: Databases;
+  private static client: Client;
+  private static databaseList: Record<string, string> = {};
 
-  static connect(endpoint: string, projectId: string, apiKey: string) {
-    const client = new Client()
+  static connect(endpoint: string, projectId: string, apiKey: string): void {
+    this.client = new Client()
       .setEndpoint(endpoint)
       .setProject(projectId)
       .setKey(apiKey);
 
-    this.databases = new Databases(client);
-    this.client = client;
+    this.databases = new Databases(this.client);
   }
 
-  static checkConnection(func: string): void {
+  protected static checkConnection(methodName: string): void {
     if (!this.databases) {
       throw new Error(
-        `Dbwrite: Please call "dbwrite.connect()" first before calling ${func}.`
+        `Dbwrite: Please call "dbwrite.connect()" before calling ${methodName}.`
       );
     }
   }
 
   protected static getClient(): Client {
-    dbwrite.checkConnection("getClient()");
-
+    this.checkConnection("getClient");
     return this.client;
   }
 
   protected static getDatabases(): Databases {
-    dbwrite.checkConnection("getDatabases()");
-
+    this.checkConnection("getDatabases");
     return new Databases(this.getClient());
   }
 
   static async listDatabases(
-    queries: [] = [],
-    search: string = ""
+    queries: string[] = [],
+    search = ""
   ): Promise<Models.DatabaseList> {
-    dbwrite.checkConnection("listDatabases()");
-
-    if (search !== "") {
-      const databases = await this.databases.list(queries, search);
-      return databases;
-    }
-
-    const databases = await this.databases.list(queries);
-    return databases;
+    this.checkConnection("listDatabases");
+    return search !== ""
+      ? this.databases.list(queries, search)
+      : this.databases.list(queries);
   }
 
   static async createDatabase(
     databaseId: string,
-    databaseName: string
-  ): Promise<any> {
-    dbwrite.checkConnection("createDatabase()");
+    databaseName: string,
+    enabled = false
+  ): Promise<void> {
+    this.checkConnection("createDatabase");
 
     const existingDatabase = await this.getDatabase(databaseId);
     if (existingDatabase) {
@@ -65,23 +58,22 @@ export class dbwrite {
     }
 
     try {
-      await this.databases.create(databaseId, databaseName);
+      await this.databases.create(databaseId, databaseName, enabled);
+      this.databaseList[databaseId] = databaseName;
     } catch (error) {
-      throw new Error(`Dbwrite: Error creating an database: ${error}`);
+      throw new Error(`Dbwrite: Error creating database: ${error}`);
     }
   }
 
   static async getDatabase(
     databaseId: string
-  ): Promise<Models.Database | boolean> {
-    dbwrite.checkConnection("getDatabase()");
+  ): Promise<Models.Database | null> {
+    this.checkConnection("getDatabase");
 
     try {
-      const result = await this.databases.get(databaseId);
-
-      return result;
+      return await this.databases.get(databaseId);
     } catch {
-      return false;
+      return null;
     }
   }
 
@@ -90,22 +82,12 @@ export class dbwrite {
     databaseName: string,
     enabled = false
   ): Promise<Models.Database> {
-    dbwrite.checkConnection("updateDatabase()");
-
-    const result = await this.databases.update(
-      databaseId,
-      databaseName,
-      enabled
-    );
-
-    return result;
+    this.checkConnection("updateDatabase");
+    return this.databases.update(databaseId, databaseName, enabled);
   }
 
-  static async deleteDatabase(databaseId: string): Promise<{}> {
-    dbwrite.checkConnection("deleteDatabase()");
-
-    const result = await this.databases.delete(databaseId);
-
-    return result;
+  static async deleteDatabase(databaseId: string): Promise<void> {
+    this.checkConnection("deleteDatabase");
+    await this.databases.delete(databaseId);
   }
 }
