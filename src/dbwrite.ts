@@ -45,31 +45,28 @@ export class dbwrite {
     databaseId: string,
     databaseName: string,
     enabled = false
-  ): Promise<void> {
+  ): Promise<Models.Database | undefined> {
     this.checkConnection("createDatabase");
 
     const existingDatabase = await this.getDatabase(databaseId);
-    if (existingDatabase) {
-      return;
-    }
-
-    try {
-      await this.databases.create(databaseId, databaseName, enabled);
-    } catch (error) {
-      throw new Error(`Dbwrite: Error creating database: ${error}`);
+    if (existingDatabase.$id !== databaseId) {
+      try {
+        const database = await this.databases.create(
+          databaseId,
+          databaseName,
+          enabled
+        );
+        return database;
+      } catch (error) {
+        throw new Error(`Dbwrite: Error creating database: ${error}`);
+      }
     }
   }
 
-  static async getDatabase(
-    databaseId: string
-  ): Promise<Models.Database | null> {
+  static async getDatabase(databaseId: string): Promise<Models.Database> {
     this.checkConnection("getDatabase");
 
-    try {
-      return await this.databases.get(databaseId);
-    } catch {
-      return null;
-    }
+    return await this.databases.get(databaseId);
   }
 
   static async updateDatabase(

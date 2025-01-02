@@ -48,18 +48,23 @@ export class Database extends dbwrite {
     permissions: string[] = [],
     documentSecurity: boolean = false,
     enabled: boolean = false
-  ): Promise<Models.Collection> {
+  ): Promise<Models.Collection | undefined> {
     dbwrite.checkConnection("createCollection");
 
-    const databases = dbwrite.initDatabases();
-    return databases.createCollection(
-      this.databaseId,
-      collectionId,
-      collectionName,
-      permissions,
-      documentSecurity,
-      enabled
-    );
+    const existingCollection = await this.getCollection(collectionId);
+
+    if (existingCollection.$id !== collectionId) {
+      const databases = dbwrite.initDatabases();
+
+      return databases.createCollection(
+        this.databaseId,
+        collectionId,
+        collectionName,
+        permissions,
+        documentSecurity,
+        enabled
+      );
+    }
   }
 
   async updateCollection(
