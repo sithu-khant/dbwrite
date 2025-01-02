@@ -15,13 +15,13 @@ We used [Docsify](https://docsify.js.org) for our documentation and subdomain fr
 ### Bun
 
 ```bash
-bun add appwrite
+bun add dbwrite
 ```
 
 ### Npm
 
 ```bash
-npm i appwrite
+npm i dbwrite
 ```
 
 ## Resources
@@ -45,6 +45,8 @@ All the new contributors are always welcome! Please make a pull request. Please 
 
 ## Logs
 
+- Thu Jan 2, 2025
+  - (1.2.01) - Fixed typo in the README.
 - Mon Dec 30, 2024
   - (12.30.01) - Added `CNAME` for `dbwrite.js.org` domain.
   - (12.30.02) - Released test version `0.0.1` to npm.

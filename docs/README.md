@@ -9,13 +9,13 @@ Easily work with Appwrite databases.
 ### Bun
 
 ```bash
-bun add appwrite
+bun add dbwrite
 ```
 
 ### Npm
 
 ```bash
-npm i appwrite
+npm i dbwrite
 ```
 
 ## License
