@@ -1,4 +1,5 @@
 import type { Models } from "node-appwrite";
+
 import { dbwrite } from "./dbwrite";
 
 export class Database extends dbwrite {
@@ -10,44 +11,41 @@ export class Database extends dbwrite {
 
     this.databaseId = databaseId;
     this.databaseName = databaseName;
+
+    dbwrite.createDatabase(databaseId, databaseName);
   }
 
-  static async listCollections(
-    databaseId: string,
+  async listCollections(
     queries: [] = [],
     search: string = ""
   ): Promise<Models.CollectionList> {
-    this.checkConnection("listCollections");
+    dbwrite.checkConnection("listCollections");
 
-    const databases = super.initDatabases();
+    const databases = dbwrite.initDatabases();
     return search !== ""
-      ? databases.listCollections(databaseId, queries, search)
-      : databases.listCollections(databaseId, queries);
+      ? databases.listCollections(this.databaseId, queries, search)
+      : databases.listCollections(this.databaseId, queries);
   }
 
-  static async getCollection(
-    databaseId: string,
-    collectionId: string
-  ): Promise<Models.Collection> {
-    this.checkConnection("getCollection");
+  async getCollection(collectionId: string): Promise<Models.Collection> {
+    dbwrite.checkConnection("getCollection");
 
-    const databases = super.initDatabases();
-    return databases.getCollection(databaseId, collectionId);
+    const databases = dbwrite.initDatabases();
+    return databases.getCollection(this.databaseId, collectionId);
   }
 
-  static async createCollection(
-    databaseId: string,
+  async createCollection(
     collectionId: string,
     collectionName: string,
     permissions: string[] = [],
     documentSecurity: boolean = false,
     enabled: boolean = false
   ): Promise<Models.Collection> {
-    this.checkConnection("createCollection");
+    dbwrite.checkConnection("createCollection");
 
-    const databases = super.initDatabases();
+    const databases = dbwrite.initDatabases();
     return databases.createCollection(
-      databaseId,
+      this.databaseId,
       collectionId,
       collectionName,
       permissions,
@@ -56,19 +54,18 @@ export class Database extends dbwrite {
     );
   }
 
-  static async updateCollection(
-    databaseId: string,
+  async updateCollection(
     collectionId: string,
     collectionName: string,
     permissions: string[] = [],
     documentSecurity: boolean = false,
     enabled: boolean = false
   ): Promise<Models.Collection> {
-    this.checkConnection("updateCollection");
+    dbwrite.checkConnection("updateCollection");
 
-    const databases = super.initDatabases();
+    const databases = dbwrite.initDatabases();
     return databases.updateCollection(
-      databaseId,
+      this.databaseId,
       collectionId,
       collectionName,
       permissions,
@@ -77,13 +74,10 @@ export class Database extends dbwrite {
     );
   }
 
-  static async deleteCollection(
-    databaseId: string,
-    collectionId: string
-  ): Promise<void> {
-    this.checkConnection("deleteCollection");
+  async deleteCollection(collectionId: string): Promise<void> {
+    dbwrite.checkConnection("deleteCollection");
 
-    const databases = super.initDatabases();
-    await databases.deleteCollection(databaseId, collectionId);
+    const databases = dbwrite.initDatabases();
+    await databases.deleteCollection(this.databaseId, collectionId);
   }
 }
