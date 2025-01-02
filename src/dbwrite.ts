@@ -40,12 +40,16 @@ export class dbwrite {
 
   static async listDatabases(
     queries: [] = [],
-    search: string = "<SEARCH>"
+    search: string = ""
   ): Promise<Models.DatabaseList> {
     dbwrite.checkConnection("listDatabases()");
 
-    const databases = await this.databases.list(queries, search);
+    if (search !== "") {
+      const databases = await this.databases.list(queries, search);
+      return databases;
+    }
 
+    const databases = await this.databases.list(queries);
     return databases;
   }
 
@@ -55,7 +59,8 @@ export class dbwrite {
   ): Promise<any> {
     dbwrite.checkConnection("createDatabase()");
 
-    if (!this.databaseList[databaseId]) {
+    const existingDatabase = await this.getDatabase(databaseId);
+    if (existingDatabase) {
       return;
     }
 
@@ -66,12 +71,18 @@ export class dbwrite {
     }
   }
 
-  static async getDatabase(databaseId: string): Promise<Models.Database> {
+  static async getDatabase(
+    databaseId: string
+  ): Promise<Models.Database | boolean> {
     dbwrite.checkConnection("getDatabase()");
 
-    const result = await this.databases.get(databaseId);
+    try {
+      const result = await this.databases.get(databaseId);
 
-    return result;
+      return result;
+    } catch {
+      return false;
+    }
   }
 
   static async updateDatabase(

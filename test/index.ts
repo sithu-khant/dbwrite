@@ -41,4 +41,5 @@ await dbwrite.createDatabase(
 );
 // dbwrite.deleteDatabase(process.env.DATABASE_ID!);
 // dbwrite.getDatabase(process.env.DATABASE_ID!);
+// console.log(await dbwrite.getDatabase(process.env.DATABASE_ID!));
 console.log(await dbwrite.listDatabases());
