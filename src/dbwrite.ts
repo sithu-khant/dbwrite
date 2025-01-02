@@ -90,4 +90,70 @@ export class dbwrite {
     this.checkConnection("deleteDatabase");
     await this.databases.delete(databaseId);
   }
+
+  static async listCollections(
+    databaseId: string,
+    queries: [] = [],
+    search: string = ""
+  ): Promise<Models.CollectionList> {
+    this.checkConnection("listCollections");
+
+    return search !== ""
+      ? this.databases.listCollections(databaseId, queries, search)
+      : this.databases.listCollections(databaseId, queries);
+  }
+
+  static async getCollection(
+    databaseId: string,
+    collectionId: string
+  ): Promise<Models.Collection> {
+    this.checkConnection("getCollection");
+    return this.databases.getCollection(databaseId, collectionId);
+  }
+
+  static async createCollection(
+    databaseId: string,
+    collectionId: string,
+    collectionName: string,
+    permissions: string[] = [],
+    documentSecurity: boolean = false,
+    enabled: boolean = false
+  ): Promise<Models.Collection> {
+    this.checkConnection("createCollection");
+    return this.databases.createCollection(
+      databaseId,
+      collectionId,
+      collectionName,
+      permissions,
+      documentSecurity,
+      enabled
+    );
+  }
+
+  static async updateCollection(
+    databaseId: string,
+    collectionId: string,
+    collectionName: string,
+    permissions: string[] = [],
+    documentSecurity: boolean = false,
+    enabled: boolean = false
+  ): Promise<Models.Collection> {
+    this.checkConnection("updateCollection");
+    return this.databases.updateCollection(
+      databaseId,
+      collectionId,
+      collectionName,
+      permissions,
+      documentSecurity,
+      enabled
+    );
+  }
+
+  static async deleteCollection(
+    databaseId: string,
+    collectionId: string
+  ): Promise<void> {
+    this.checkConnection("deleteCollection");
+    await this.databases.deleteCollection(databaseId, collectionId);
+  }
 }
