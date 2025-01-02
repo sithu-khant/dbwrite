@@ -7,7 +7,10 @@ dotenv.config();
 
 export class dbwrite {
   private static databases: Databases;
+  private static client: Client;
   private static models: Record<string, Model> = {};
+  private static databaseId: string;
+  private static databaseName: string;
 
   static connect(endpoint: string, projectId: string, apiKey: string) {
     const client = new Client()
@@ -16,6 +19,7 @@ export class dbwrite {
       .setKey(apiKey);
 
     this.databases = new Databases(client);
+    this.client = client;
   }
 
   static checkConnection(func: string): void {
@@ -24,6 +28,16 @@ export class dbwrite {
         `Dbwrite: Please call "dbwrite.connect()" first before calling ${func}.`
       );
     }
+  }
+
+  static getClient(): Client {
+    dbwrite.checkConnection("getClient()");
+
+    return this.client;
+  }
+
+  static getDatabases(): Databases {
+    return new Databases(this.getClient());
   }
 
   private static async createDatabase(
@@ -38,6 +52,9 @@ export class dbwrite {
 
       try {
         await this.databases.create(databaseId, databaseName);
+
+        this.databaseId = databaseId;
+        this.databaseName = databaseName;
       } catch (error) {
         throw new Error(`Dbwrite: Error creating an database: ${error}`);
       }
