@@ -8,9 +8,7 @@ dotenv.config();
 export class dbwrite {
   private static databases: Databases;
   private static client: Client;
-  private static models: Record<string, Model> = {};
-  private static databaseId: string;
-  private static databaseName: string;
+  private static databaseList: Record<string, string> = {};
 
   static connect(endpoint: string, projectId: string, apiKey: string) {
     const client = new Client()
@@ -37,7 +35,13 @@ export class dbwrite {
   }
 
   static getDatabases(): Databases {
+    dbwrite.checkConnection("getDatabases()");
+
     return new Databases(this.getClient());
+  }
+
+  get listDatabases() {
+    return dbwrite.databaseList;
   }
 
   private static async createDatabase(
@@ -47,14 +51,11 @@ export class dbwrite {
   ): Promise<void> {
     dbwrite.checkConnection("createDatabase()");
 
-    if (!this.models[databaseId]) {
-      this.models[databaseId] = model;
+    if (!this.databaseList[databaseId]) {
+      this.databaseList[databaseId] = databaseName;
 
       try {
         await this.databases.create(databaseId, databaseName);
-
-        this.databaseId = databaseId;
-        this.databaseName = databaseName;
       } catch (error) {
         throw new Error(`Dbwrite: Error creating an database: ${error}`);
       }

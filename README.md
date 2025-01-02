@@ -49,6 +49,7 @@ All the new contributors are always welcome! Please make a pull request. Please 
   - (1.2.01) - Fixed typo in the README.
   - (1.2.02) - Committed for safety.
   - (1.2.03) - Again commited for safety.
+  - (1.2.04) - Created a lot of functions.
 - Mon Dec 30, 2024
   - (12.30.01) - Added `CNAME` for `dbwrite.js.org` domain.
   - (12.30.02) - Released test version `0.0.1` to npm.
