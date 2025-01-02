@@ -4,8 +4,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export class dbwrite {
-  private static databases: Databases;
-  private static client: Client;
+  protected static databases: Databases;
+  protected static client: Client;
 
   static connect(endpoint: string, projectId: string, apiKey: string) {
     const client = new Client()
@@ -41,7 +41,7 @@ export class dbwrite {
     queries: [] = [],
     search: string = "<SEARCH>"
   ): Promise<Models.DatabaseList> {
-    dbwrite.checkConnection("createDatabase()");
+    dbwrite.checkConnection("listDatabases()");
 
     const databases = await this.databases.list(queries, search);
 
@@ -65,7 +65,7 @@ export class dbwrite {
   }
 
   static async getDatabase(databaseId: string): Promise<Models.Database> {
-    dbwrite.checkConnection("createDatabase()");
+    dbwrite.checkConnection("getDatabase()");
 
     const database = await this.databases.get(databaseId);
 

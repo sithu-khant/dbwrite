@@ -1,8 +1,9 @@
 import { ID, type Models } from "node-appwrite";
+
 import { dbwrite } from "./dbwrite";
 import type { Schema } from "./schema";
 
-export class Model {
+export class Model extends dbwrite {
   private databaseId: string;
   private collectionId: string;
   private collectionName: string;
@@ -14,6 +15,8 @@ export class Model {
     collectionName: string,
     schema: Schema
   ) {
+    super();
+
     this.databaseId = databaseId;
     this.collectionId = collectionId;
     this.collectionName = collectionName;
@@ -65,7 +68,7 @@ export class Model {
     }
   }
 
-  async save(data: Record<string, any>): Promise<Models.Document> {
+  async createDocument(data: Record<string, any>): Promise<Models.Document> {
     dbwrite.checkConnection("save()");
     this.validateSchema(data);
 
