@@ -45,7 +45,7 @@ export class Database extends dbwrite {
     dbwrite.checkConnection("getCollection");
 
     const databases = dbwrite.initDatabases();
-    return databases.getCollection(this.databaseId, collectionId);
+    return await databases.getCollection(this.databaseId, collectionId);
   }
 
   async createCollection(
@@ -61,11 +61,10 @@ export class Database extends dbwrite {
     try {
       await this.getCollection(collectionId);
     } catch {
-      console.log("Running...");
       // Don't create a new collection if there is a existing one
       const databases = dbwrite.initDatabases();
 
-      const result = databases.createCollection(
+      const result = await databases.createCollection(
         this.databaseId,
         collectionId,
         collectionName,
@@ -91,7 +90,7 @@ export class Database extends dbwrite {
     dbwrite.checkConnection("updateCollection");
 
     const databases = dbwrite.initDatabases();
-    return databases.updateCollection(
+    return await databases.updateCollection(
       this.databaseId,
       collectionId,
       collectionName,

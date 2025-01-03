@@ -46,4 +46,4 @@ const SubscriptionModel = new Model(
 // console.log(await dbwrite.getDatabase(process.env.DATABASE_ID!));
 
 // dbwrite.getDatabase(process.env.DATABASE_ID!);
-dbwrite.deleteDatabase(process.env.DATABASE_ID!);
+// dbwrite.deleteDatabase(process.env.DATABASE_ID!);

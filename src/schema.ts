@@ -45,17 +45,17 @@ export class Schema {
     collectionId: string
   ) {
     for (const key in this.fields) {
-      console.log(typeof this.fields[key].type);
-      // // String attribute
-      // if (this.fields[key].type === String) {
-      //   await initDatabases.createStringAttribute(
-      //     databaseId,
-      //     collectionId,
-      //     key,
-      //     1,
-      //     false
-      //   );
-      // }
+      // String attribute
+      if (this.fields[key].type === String) {
+        console.log(key);
+        await initDatabases.createStringAttribute(
+          databaseId,
+          collectionId,
+          key,
+          1,
+          false
+        );
+      }
     }
   }
 }
