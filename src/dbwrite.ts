@@ -51,7 +51,7 @@ export class dbwrite {
     const existingDatabase = await this.getDatabase(databaseId);
 
     // Don't create a new database if there is a existing one
-    if (existingDatabase.$id !== databaseId) {
+    if (existingDatabase === null) {
       try {
         const database = await this.databases.create(
           databaseId,
@@ -65,10 +65,16 @@ export class dbwrite {
     }
   }
 
-  static async getDatabase(databaseId: string): Promise<Models.Database> {
+  static async getDatabase(
+    databaseId: string
+  ): Promise<Models.Database | null> {
     this.checkConnection("getDatabase");
 
-    return await this.databases.get(databaseId);
+    try {
+      return await this.databases.get(databaseId);
+    } catch {
+      return null;
+    }
   }
 
   static async updateDatabase(

@@ -34,6 +34,10 @@ const SubscriptionDB = new Database(
   process.env.DATABASE_NAME!
 );
 
+// console.log(await dbwrite.getDatabase(process.env.DATABASE_ID!));
+
+// dbwrite.deleteDatabase(process.env.DATABASE_ID!);
+
 const SubscriptionModel = new Model(
   SubscriptionDB,
   process.env.COLLECTION_ID!,
@@ -41,4 +45,4 @@ const SubscriptionModel = new Model(
   schema
 );
 
-SubscriptionDB.listCollections();
+console.log(SubscriptionDB.listCollections());
