@@ -14,7 +14,11 @@ export class Database extends dbwrite {
     this.databaseName = databaseName;
 
     // Create a database after initialization
-    dbwrite.createDatabase(databaseId, databaseName);
+    this.createDatabase();
+  }
+
+  private async createDatabase() {
+    await dbwrite.createDatabase(this.databaseId, this.databaseName);
   }
 
   getId(): string {
@@ -60,7 +64,7 @@ export class Database extends dbwrite {
     if (existingCollection.$id !== collectionId) {
       const databases = dbwrite.initDatabases();
 
-      return databases.createCollection(
+      const result = databases.createCollection(
         this.databaseId,
         collectionId,
         collectionName,
@@ -68,6 +72,11 @@ export class Database extends dbwrite {
         documentSecurity,
         enabled
       );
+
+      // Create attribute fields
+      schema.createAttributes(databases, this.databaseId, collectionId);
+
+      return result;
     }
   }
 

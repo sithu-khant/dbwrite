@@ -1,10 +1,12 @@
+import type { Databases } from "node-appwrite";
+
 type FieldDefinition = {
   type: any;
   required?: boolean;
 };
 
 type SchemaOptions = {
-  timestamps?: boolean;
+  _deletedAt?: boolean;
 };
 
 export class Schema {
@@ -32,6 +34,25 @@ export class Schema {
       if (field.type && typeof data[key] !== typeof field.type()) {
         throw new Error(
           `Field "${key}" must be of type ${typeof field.type()}.`
+        );
+      }
+    }
+  }
+
+  async createAttributes(
+    initDatabases: Databases,
+    databaseId: string,
+    collectionId: string
+  ) {
+    for (const key in this.fields) {
+      // String attribute
+      if (this.fields[key].type === String) {
+        await initDatabases.createStringAttribute(
+          databaseId,
+          collectionId,
+          key,
+          1,
+          false
         );
       }
     }

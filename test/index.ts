@@ -20,7 +20,7 @@ const schema = new Schema(
     website: { type: String, required: true },
     notes: { type: String, required: false },
   },
-  { timestamps: true }
+  { _deletedAt: true }
 );
 
 dbwrite.connect(
@@ -41,14 +41,4 @@ const SubscriptionModel = new Model(
   schema
 );
 
-await dbwrite.createDatabase(
-  process.env.DATABASE_ID!,
-  process.env.DATABASE_NAME!
-);
-
-// dbwrite.deleteDatabase(process.env.DATABASE_ID!);
-// dbwrite.getDatabase(process.env.DATABASE_ID!);
-// console.log(await dbwrite.getDatabase(process.env.DATABASE_ID!));
-console.log(await dbwrite.listDatabases());
-console.log("-----");
-console.log(await SubscriptionDB.listCollections());
+SubscriptionDB.listCollections();
