@@ -22,10 +22,10 @@ export class Model extends dbwrite {
     this.collectionName = collectionName;
     this.schema = schema;
 
-    this.createCollection().catch(console.error);
+    this.init();
   }
 
-  private async createCollection(): Promise<void> {
+  private async init(): Promise<void> {
     await this.database.createCollection(
       this.collectionId,
       this.collectionName,

@@ -11,10 +11,11 @@ export class Database extends dbwrite {
 
     this.databaseId = databaseId;
     this.databaseName = databaseName;
-    this.createDatabase().catch(console.error);
+
+    this.init();
   }
 
-  private async createDatabase(): Promise<void> {
+  private async init(): Promise<void> {
     await dbwrite.createDatabase(this.databaseId, this.databaseName);
   }
 

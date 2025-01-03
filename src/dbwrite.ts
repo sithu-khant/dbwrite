@@ -46,11 +46,11 @@ export class dbwrite {
     databaseId: string,
     databaseName: string,
     enabled = false
-  ): Promise<Models.Database | undefined> {
+  ): Promise<Models.Database> {
     this.checkConnection("createDatabase");
 
     try {
-      await this.getDatabase(databaseId);
+      return await this.getDatabase(databaseId);
     } catch {
       // If there is no database create a new one.
       try {

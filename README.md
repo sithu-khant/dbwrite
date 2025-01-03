@@ -55,6 +55,7 @@ All the new contributors are always welcome! Please make a pull request. Please 
   - (1.3.07) - Committed for safety.
   - (1.3.08) - Creating attributes from the code is now partially working.
   - (1.3.09) - Cleaned codes.
+  - (1.3.10) - Renamed initialization function names.
 - Thu Jan 2, 2025
   - (1.2.01) - Fixed typo in the README.
   - (1.2.02) - Committed for safety.
