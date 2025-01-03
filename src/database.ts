@@ -1,51 +1,50 @@
 import type { Models } from "node-appwrite";
-
 import { dbwrite } from "./dbwrite";
 import type { Schema } from "./schema";
 
 export class Database extends dbwrite {
-  private databaseId: string;
-  private databaseName: string;
+  private readonly databaseId: string;
+  private readonly databaseName: string;
 
   constructor(databaseId: string, databaseName: string) {
     super();
 
     this.databaseId = databaseId;
     this.databaseName = databaseName;
-
-    // Create a database after initialization
-    this.createDatabase();
+    this.createDatabase().catch(console.error);
   }
 
-  private async createDatabase() {
+  private async createDatabase(): Promise<void> {
     await dbwrite.createDatabase(this.databaseId, this.databaseName);
   }
 
-  getId(): string {
+  get id(): string {
     return this.databaseId;
   }
 
-  getName(): string {
+  get name(): string {
     return this.databaseName;
   }
 
   async listCollections(
-    queries: [] = [],
-    search: string = ""
+    queries: string[] = [],
+    search = ""
   ): Promise<Models.CollectionList> {
     dbwrite.checkConnection("listCollections");
 
     const databases = dbwrite.initDatabases();
-    return search !== ""
-      ? databases.listCollections(this.databaseId, queries, search)
-      : databases.listCollections(this.databaseId, queries);
+    return databases.listCollections(
+      this.databaseId,
+      queries,
+      search || undefined
+    );
   }
 
   async getCollection(collectionId: string): Promise<Models.Collection> {
     dbwrite.checkConnection("getCollection");
 
     const databases = dbwrite.initDatabases();
-    return await databases.getCollection(this.databaseId, collectionId);
+    return databases.getCollection(this.databaseId, collectionId);
   }
 
   async createCollection(
@@ -53,17 +52,15 @@ export class Database extends dbwrite {
     collectionName: string,
     schema: Schema,
     permissions: string[] = [],
-    documentSecurity: boolean = false,
-    enabled: boolean = false
+    documentSecurity = false,
+    enabled = false
   ): Promise<Models.Collection | undefined> {
     dbwrite.checkConnection("createCollection");
 
     try {
       await this.getCollection(collectionId);
     } catch {
-      // Don't create a new collection if there is a existing one
       const databases = dbwrite.initDatabases();
-
       const result = await databases.createCollection(
         this.databaseId,
         collectionId,
@@ -73,9 +70,7 @@ export class Database extends dbwrite {
         enabled
       );
 
-      // Create attribute fields
       await schema.createAttributes(databases, this.databaseId, collectionId);
-
       return result;
     }
   }
@@ -84,13 +79,13 @@ export class Database extends dbwrite {
     collectionId: string,
     collectionName: string,
     permissions: string[] = [],
-    documentSecurity: boolean = false,
-    enabled: boolean = false
+    documentSecurity = false,
+    enabled = false
   ): Promise<Models.Collection> {
     dbwrite.checkConnection("updateCollection");
 
     const databases = dbwrite.initDatabases();
-    return await databases.updateCollection(
+    return databases.updateCollection(
       this.databaseId,
       collectionId,
       collectionName,
