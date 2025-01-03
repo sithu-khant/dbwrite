@@ -58,10 +58,11 @@ export class Database extends dbwrite {
   ): Promise<Models.Collection | undefined> {
     dbwrite.checkConnection("createCollection");
 
-    const existingCollection = await this.getCollection(collectionId);
-
-    // Don't create a new collection if there is a existing one
-    if (existingCollection.$id !== collectionId) {
+    try {
+      await this.getCollection(collectionId);
+    } catch {
+      console.log("Running...");
+      // Don't create a new collection if there is a existing one
       const databases = dbwrite.initDatabases();
 
       const result = databases.createCollection(
@@ -74,7 +75,7 @@ export class Database extends dbwrite {
       );
 
       // Create attribute fields
-      schema.createAttributes(databases, this.databaseId, collectionId);
+      await schema.createAttributes(databases, this.databaseId, collectionId);
 
       return result;
     }

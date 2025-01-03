@@ -50,7 +50,7 @@ export class dbwrite {
     this.checkConnection("createDatabase");
 
     try {
-      await dbwrite.getDatabase(databaseId);
+      await this.getDatabase(databaseId);
     } catch {
       // If there is no database create a new one.
       try {
