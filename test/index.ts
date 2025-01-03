@@ -29,20 +29,21 @@ dbwrite.connect(
   process.env.APPWRITE_KEY!
 );
 
-const SubscriptionDB = new Database(
-  process.env.DATABASE_ID!,
-  process.env.DATABASE_NAME!
-);
+// const SubscriptionDB = new Database(
+//   process.env.DATABASE_ID!,
+//   process.env.DATABASE_NAME!
+// );
 
 // console.log(await dbwrite.getDatabase(process.env.DATABASE_ID!));
 
+dbwrite.getDatabase(process.env.DATABASE_ID!);
 // dbwrite.deleteDatabase(process.env.DATABASE_ID!);
 
-const SubscriptionModel = new Model(
-  SubscriptionDB,
-  process.env.COLLECTION_ID!,
-  process.env.COLLECTION_NAME!,
-  schema
-);
+// const SubscriptionModel = new Model(
+//   SubscriptionDB,
+//   process.env.COLLECTION_ID!,
+//   process.env.COLLECTION_NAME!,
+//   schema
+// );
 
-console.log(SubscriptionDB.listCollections());
+// console.log(SubscriptionDB.listCollections());

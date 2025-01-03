@@ -36,6 +36,7 @@ export class dbwrite {
     search = ""
   ): Promise<Models.DatabaseList> {
     this.checkConnection("listDatabases");
+
     return search !== ""
       ? this.databases.list(queries, search)
       : this.databases.list(queries);
@@ -48,10 +49,10 @@ export class dbwrite {
   ): Promise<Models.Database | undefined> {
     this.checkConnection("createDatabase");
 
-    const existingDatabase = await this.getDatabase(databaseId);
-
-    // Don't create a new database if there is a existing one
-    if (existingDatabase === null) {
+    try {
+      await dbwrite.getDatabase(databaseId);
+    } catch {
+      // If there is no database create a new one.
       try {
         const database = await this.databases.create(
           databaseId,
@@ -59,21 +60,19 @@ export class dbwrite {
           enabled
         );
         return database;
-      } catch (error) {
-        throw new Error(`Dbwrite: Error creating database: ${error}`);
+      } catch (error: any) {
+        throw new Error(`Dbwrite: Error creating database: ${error.message}`);
       }
     }
   }
 
-  static async getDatabase(
-    databaseId: string
-  ): Promise<Models.Database | null> {
+  static async getDatabase(databaseId: string): Promise<Models.Database> {
     this.checkConnection("getDatabase");
 
     try {
       return await this.databases.get(databaseId);
-    } catch {
-      return null;
+    } catch (error: any) {
+      throw new Error(`Dbwrite: Error getting database: ${error.message}`);
     }
   }
 
@@ -88,6 +87,11 @@ export class dbwrite {
 
   static async deleteDatabase(databaseId: string): Promise<void> {
     this.checkConnection("deleteDatabase");
-    await this.databases.delete(databaseId);
+
+    try {
+      await this.databases.delete(databaseId);
+    } catch (error: any) {
+      throw new Error(`Dbwrite: Error deleting database: ${error.message}`);
+    }
   }
 }
