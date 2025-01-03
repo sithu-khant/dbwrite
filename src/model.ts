@@ -23,7 +23,8 @@ export class Model extends dbwrite {
     this.collectionName = collectionName;
     this.schema = schema;
 
-    database.createCollection(this.collectionId, this.collectionName);
+    // Create a collection after initialization
+    database.createCollection(collectionId, collectionName, schema);
   }
 
   async getDocument(

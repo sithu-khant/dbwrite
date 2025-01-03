@@ -1,6 +1,7 @@
 import type { Models } from "node-appwrite";
 
 import { dbwrite } from "./dbwrite";
+import type { Schema } from "./schema";
 
 export class Database extends dbwrite {
   private databaseId: string;
@@ -12,6 +13,7 @@ export class Database extends dbwrite {
     this.databaseId = databaseId;
     this.databaseName = databaseName;
 
+    // Create a database after initialization
     dbwrite.createDatabase(databaseId, databaseName);
   }
 
@@ -45,6 +47,7 @@ export class Database extends dbwrite {
   async createCollection(
     collectionId: string,
     collectionName: string,
+    schema: Schema,
     permissions: string[] = [],
     documentSecurity: boolean = false,
     enabled: boolean = false
@@ -53,6 +56,7 @@ export class Database extends dbwrite {
 
     const existingCollection = await this.getCollection(collectionId);
 
+    // Don't create a new collection if there is a existing one
     if (existingCollection.$id !== collectionId) {
       const databases = dbwrite.initDatabases();
 

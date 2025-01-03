@@ -49,6 +49,8 @@ export class dbwrite {
     this.checkConnection("createDatabase");
 
     const existingDatabase = await this.getDatabase(databaseId);
+
+    // Don't create a new database if there is a existing one
     if (existingDatabase.$id !== databaseId) {
       try {
         const database = await this.databases.create(
