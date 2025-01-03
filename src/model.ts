@@ -27,6 +27,14 @@ export class Model extends dbwrite {
     database.createCollection(collectionId, collectionName, schema);
   }
 
+  get getId(): string {
+    return this.collectionId;
+  }
+
+  get getName(): string {
+    return this.collectionName;
+  }
+
   async listDocuments(queries: [] = []): Promise<Models.Document[]> {
     dbwrite.checkConnection("listDocuments()");
 
@@ -100,19 +108,5 @@ export class Model extends dbwrite {
       this.collectionId,
       documentId
     );
-  }
-
-  async softDeleteDocument(documentId: string): Promise<Models.Document> {
-    dbwrite.checkConnection("softDeleteDocument()");
-
-    const databases = dbwrite.initDatabases();
-    const updatedDocument = await databases.updateDocument(
-      this.database.getId(),
-      this.collectionId,
-      documentId,
-      { deletedAt: new Date().toISOString() }
-    );
-
-    return updatedDocument;
   }
 }
