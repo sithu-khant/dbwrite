@@ -27,6 +27,35 @@ export class Model extends dbwrite {
     database.createCollection(collectionId, collectionName, schema);
   }
 
+  async listDocuments(queries: [] = []): Promise<Models.Document[]> {
+    dbwrite.checkConnection("listDocuments()");
+
+    const databases = dbwrite.initDatabases();
+    const documents = await databases.listDocuments(
+      this.database.getId(),
+      this.collectionId,
+      queries
+    );
+
+    return documents.documents;
+  }
+
+  async createDocument(data: Schema): Promise<Models.Document> {
+    dbwrite.checkConnection("createDocument()");
+
+    this.schema.validateSchema(data);
+
+    const databases = dbwrite.initDatabases();
+    const document = await databases.createDocument(
+      this.database.getId(),
+      this.collectionId,
+      ID.unique(),
+      data
+    );
+
+    return document;
+  }
+
   async getDocument(
     documentId: string,
     queries: [] = []
@@ -44,46 +73,46 @@ export class Model extends dbwrite {
     return document;
   }
 
-  async listDocuments(queries: [] = []): Promise<Models.Document[]> {
-    dbwrite.checkConnection("listDocuments()");
+  async updateDocument(
+    documentId: string,
+    data: Record<string, any>
+  ): Promise<Models.Document> {
+    dbwrite.checkConnection("updateDocument()");
+    this.schema.validateSchema(data);
 
     const databases = dbwrite.initDatabases();
-    const documents = await databases.listDocuments(
+    const updatedDocument = await databases.updateDocument(
       this.database.getId(),
       this.collectionId,
-      queries
-    );
-
-    return documents.documents;
-  }
-
-  private validateSchema(data: Record<string, any>): void {
-    for (const key in this.schema.fields) {
-      const field = this.schema.fields[key];
-      if (field.required && data[key] === undefined) {
-        throw new Error(`Field ${key} is required.`);
-      }
-
-      if (field.type && typeof data[key] !== typeof field.type()) {
-        throw new Error(
-          `Field "${key}" must be of type ${typeof field.type()}.`
-        );
-      }
-    }
-  }
-
-  async createDocument(data: Record<string, any>): Promise<Models.Document> {
-    dbwrite.checkConnection("save()");
-    this.validateSchema(data);
-
-    const databases = dbwrite.initDatabases();
-    const document = await databases.createDocument(
-      this.database.getId(),
-      this.collectionId,
-      ID.unique(),
+      documentId,
       data
     );
 
-    return document;
+    return updatedDocument;
+  }
+
+  async deleteDocument(documentId: string): Promise<void> {
+    dbwrite.checkConnection("deleteDocument()");
+
+    const databases = dbwrite.initDatabases();
+    await databases.deleteDocument(
+      this.database.getId(),
+      this.collectionId,
+      documentId
+    );
+  }
+
+  async softDeleteDocument(documentId: string): Promise<Models.Document> {
+    dbwrite.checkConnection("softDeleteDocument()");
+
+    const databases = dbwrite.initDatabases();
+    const updatedDocument = await databases.updateDocument(
+      this.database.getId(),
+      this.collectionId,
+      documentId,
+      { deletedAt: new Date().toISOString() }
+    );
+
+    return updatedDocument;
   }
 }
