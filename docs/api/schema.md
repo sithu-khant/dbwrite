@@ -1,6 +1,6 @@
 # `Schema`
 
-The `Schema` class is responsible for defining the structure of a collection in Appwrite. It includes field validation and allows the creation of attributes within an Appwrite collection based on the defined schema. The class supports various field types such as `String`, `Integer`, `Float`, `Boolean`, `Datetime`, `Email`, `IP`, `URL`, `Enum`, and `Relation`.
+The `Schema` class is responsible for defining the structure of a collection in Appwrite. It includes field validation and allows the creation of attributes within an Appwrite collection based on the defined schema. The class supports various field types such as `String`, `Integer`, `Float`, `Boolean`, `Datetime`, `Email`, `IP`, `URL`, `Enum`, and `Relationship`.
 
 ## Table of Contents
 
@@ -21,13 +21,13 @@ The `Schema` class is responsible for defining the structure of a collection in 
 
 To install the `Schema` class, ensure you have installed the `dbwrite` package. You can install it using:
 
-```
+```bash
 npm install dbwrite
 ```
 
 Make sure the dependencies like `node-appwrite` are also installed:
 
-```
+```bash
 npm install node-appwrite
 ```
 
@@ -37,7 +37,7 @@ npm install node-appwrite
 
 To create a schema, instantiate the `Schema` class and define the fields and options.
 
-```
+```js
 import { Schema } from "dbwrite";
 
 const schema = new Schema({
@@ -51,7 +51,7 @@ const schema = new Schema({
 
 Once the schema is defined, you can validate it against incoming data to ensure it meets the required structure.
 
-```
+```js
 const data = {
   title: "Product",
   price: 25.99,
@@ -66,7 +66,7 @@ If the data is invalid, an error will be thrown. The validation checks for requi
 
 To create the schema attributes in an Appwrite collection, use the `createAttributes` method. This method will automatically create the necessary fields in the collection based on the schema.
 
-```
+```js
 import { dbwrite } from "dbwrite";
 
 const myDatabase = new Database("my-database-id", "My Database Name");
@@ -75,7 +75,11 @@ const schema = new Schema({
   price: { type: "Float", min: 0 },
 });
 
-await schema.createAttributes(dbwrite.initDatabases(), "my-database-id", "my-collection-id");
+await schema.createAttributes(
+  dbwrite.initDatabases(),
+  "my-database-id",
+  "my-collection-id"
+);
 ```
 
 ## Methods

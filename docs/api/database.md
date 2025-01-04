@@ -29,13 +29,13 @@ The `Database` class extends the `dbwrite` class and provides an interface for m
 
 To install `Database`, ensure you have already installed the `dbwrite` package. You can install it using:
 
-```
+```bash
 npm install dbwrite
 ```
 
 Make sure the dependencies like `node-appwrite` are also installed:
 
-```
+```bash
 npm install node-appwrite
 ```
 
@@ -45,7 +45,7 @@ npm install node-appwrite
 
 To create a new database, simply instantiate the `Database` class with the required `databaseId` and `databaseName`. If the database doesn't already exist, it will be created automatically.
 
-```
+```js
 import { Database } from "dbwrite";
 
 const myDatabase = new Database("new-database-id", "New Database Name");
@@ -55,7 +55,7 @@ const myDatabase = new Database("new-database-id", "New Database Name");
 
 To list all collections within a specific database:
 
-```
+```js
 const collections = await myDatabase.listCollections();
 console.log(collections);
 ```
@@ -64,7 +64,7 @@ console.log(collections);
 
 To retrieve a specific collection by its ID:
 
-```
+```js
 const collection = await myDatabase.getCollection("existing-collection-id");
 console.log(collection);
 ```
@@ -73,7 +73,7 @@ console.log(collection);
 
 To create a new collection within the database:
 
-```
+```js
 const collection = await myDatabase.createCollection(
   "new-collection-id",
   "New Collection Name",
@@ -89,7 +89,7 @@ console.log(collection);
 
 To update an existing collection's properties:
 
-```
+```js
 const updatedCollection = await myDatabase.updateCollection(
   "existing-collection-id",
   "Updated Collection Name",
@@ -104,7 +104,7 @@ console.log(updatedCollection);
 
 To delete a collection:
 
-```
+```js
 await myDatabase.deleteCollection("existing-collection-id");
 console.log("Collection deleted");
 ```
@@ -119,13 +119,13 @@ Creates a new `Database` instance. The constructor automatically calls `dbwrite.
   - `databaseId`: The ID of the database.
   - `databaseName`: The name of the database.
 
-### `id(): string`
+### get `id(): string`
 
 Returns the ID of the current database.
 
 - **Returns:** The `databaseId` string.
 
-### `name(): string`
+### get `name(): string`
 
 Returns the name of the current database.
 
@@ -152,15 +152,7 @@ Retrieves a specific collection by its ID.
 
 - **Returns:** A promise that resolves with the requested collection.
 
-### `createCollection(
-
-collectionId: string,
-collectionName: string,
-schema: Schema,
-permissions: string[] = [],
-documentSecurity = false,
-enabled = false
-): Promise<Models.Collection>`
+### `createCollection(collectionId: string, collectionName: string, schema: Schema, permissions: string[] = [], documentSecurity = false, enabled = false): Promise<Models.Collection>`
 
 Creates a new collection within the current database. If the collection already exists, it will be returned instead.
 
@@ -175,14 +167,7 @@ Creates a new collection within the current database. If the collection already 
 
 - **Returns:** A promise that resolves with the created or existing collection.
 
-### `updateCollection(
-
-collectionId: string,
-collectionName: string,
-permissions: string[] = [],
-documentSecurity = false,
-enabled = false
-): Promise<Models.Collection>`
+### `updateCollection(collectionId: string, collectionName: string, permissions: string[] = [], documentSecurity = false, enabled = false): Promise<Models.Collection>`
 
 Updates the properties of an existing collection.
 

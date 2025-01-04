@@ -30,13 +30,13 @@ The `Model` class provides a high-level abstraction for working with documents i
 
 To install the `Model` class, ensure you have installed the `dbwrite` package along with its dependencies.
 
-```
+```bash
 npm install dbwrite
 ```
 
 Make sure that `node-appwrite` is installed:
 
-```
+```bash
 npm install node-appwrite
 ```
 
