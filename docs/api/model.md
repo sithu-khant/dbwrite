@@ -125,7 +125,9 @@ await model.deleteDocument(documentId);
 
 ## Methods
 
-### `constructor(database: Database, collectionId: string, collectionName: string, schema: Schema)`
+### constructor
+
+##### `constructor(database: Database, collectionId: string, collectionName: string, schema: Schema)`
 
 Creates a new `Model` instance for interacting with a specific collection in the database.
 
@@ -135,23 +137,25 @@ Creates a new `Model` instance for interacting with a specific collection in the
   - `collectionName`: The name of the collection.
   - `schema`: An instance of the `Schema` class used to validate document data.
 
-### `private async init(): Promise<void>`
+### id
 
-This method ensures that the database and collection are created if they don't already exist. It's called automatically when the `Model` instance is created.
-
-### `get id(): string`
+##### `get id(): string`
 
 A getter for the `collectionId` property. This provides the ID of the collection the model represents.
 
 - **Returns:** The collection ID.
 
-### `get name(): string`
+### name
+
+##### `get name(): string`
 
 A getter for the `collectionName` property. This provides the name of the collection the model represents.
 
 - **Returns:** The collection name.
 
-### `async listDocuments(queries: string[] = []): Promise<Models.Document[]>`
+### listDocuments
+
+##### `async listDocuments(queries: string[] = []): Promise<Models.Document[]>`
 
 Lists documents in the specified collection. You can pass queries to filter the results.
 
@@ -159,7 +163,9 @@ Lists documents in the specified collection. You can pass queries to filter the 
   - `queries`: An optional array of queries to filter documents.
 - **Returns:** A promise that resolves to an array of documents.
 
-### `async createDocument(data: Schema): Promise<Models.Document>`
+### createDocument
+
+##### `async createDocument(data: Schema): Promise<Models.Document>`
 
 Creates a new document in the collection. The provided data is validated using the schema before being added to the collection.
 
@@ -169,7 +175,9 @@ Creates a new document in the collection. The provided data is validated using t
 
 - **Returns:** A promise that resolves to the created document.
 
-### `async getDocument(documentId: string, queries: string[] = []): Promise<Models.Document>`
+### getDocument
+
+##### `async getDocument(documentId: string, queries: string[] = []): Promise<Models.Document>`
 
 Retrieves a document by its ID from the collection.
 
@@ -180,7 +188,9 @@ Retrieves a document by its ID from the collection.
 
 - **Returns:** A promise that resolves to the requested document.
 
-### `async updateDocument(documentId: string, data: Record<string, any>): Promise<Models.Document>`
+### updateDocument
+
+##### `async updateDocument(documentId: string, data: Record<string, any>): Promise<Models.Document>`
 
 Updates an existing document in the collection. The provided data is validated using the schema before updating the document.
 
@@ -191,7 +201,9 @@ Updates an existing document in the collection. The provided data is validated u
 
 - **Returns:** A promise that resolves to the updated document.
 
-### `async deleteDocument(documentId: string): Promise<void>`
+### deleteDocument
+
+##### `async deleteDocument(documentId: string): Promise<void>`
 
 Deletes a document from the collection.
 
