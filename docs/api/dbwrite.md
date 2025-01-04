@@ -106,7 +106,9 @@ console.log("Database deleted");
 
 ## Methods
 
-### `connect(endpoint: string, projectId: string, apiKey: string): void`
+### connect
+
+##### `connect(endpoint: string, projectId: string, apiKey: string): void`
 
 Establishes a connection to the Appwrite instance using the provided endpoint, project ID, and API key.
 
@@ -115,7 +117,9 @@ Establishes a connection to the Appwrite instance using the provided endpoint, p
   - `projectId`: The ID of the project you are working with.
   - `apiKey`: Your Appwrite API key.
 
-### `listDatabases(queries: string[] = [], search: string = ""): Promise<Models.DatabaseList>`
+### listDatabases
+
+##### `listDatabases(queries: string[] = [], search: string = ""): Promise<Models.DatabaseList>`
 
 Lists all available databases. Optionally, you can filter the results using query parameters or a search string.
 
@@ -126,7 +130,9 @@ Lists all available databases. Optionally, you can filter the results using quer
 
 - **Returns:** A promise that resolves with a list of databases.
 
-### `createDatabase(databaseId: string, databaseName: string, enabled: boolean = false): Promise<Models.Database>`
+### createDatabase
+
+##### `createDatabase(databaseId: string, databaseName: string, enabled: boolean = false): Promise<Models.Database>`
 
 Creates a new database with the specified ID and name. If a database with the same ID already exists, it is returned instead.
 
@@ -138,7 +144,9 @@ Creates a new database with the specified ID and name. If a database with the sa
 
 - **Returns:** A promise that resolves with the created or existing database.
 
-### `getDatabase(databaseId: string): Promise<Models.Database>`
+### getDatabase
+
+##### `getDatabase(databaseId: string): Promise<Models.Database>`
 
 Retrieves a specific database by its ID.
 
@@ -148,7 +156,9 @@ Retrieves a specific database by its ID.
 
 - **Returns:** A promise that resolves with the requested database.
 
-### `updateDatabase(databaseId: string, databaseName: string, enabled: boolean = false): Promise<Models.Database>`
+### updateDatabase
+
+##### `updateDatabase(databaseId: string, databaseName: string, enabled: boolean = false): Promise<Models.Database>`
 
 Updates the properties (name and enabled status) of an existing database.
 
@@ -160,7 +170,9 @@ Updates the properties (name and enabled status) of an existing database.
 
 - **Returns:** A promise that resolves with the updated database.
 
-### `deleteDatabase(databaseId: string): Promise<void>`
+### deleteDatabase
+
+##### `deleteDatabase(databaseId: string): Promise<void>`
 
 Deletes a specific database by its ID.
 
