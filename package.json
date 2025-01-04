@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "tsup",
-    "test": "bun run ./test/index.ts"
+    "test": "bun run ./test/index2.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",

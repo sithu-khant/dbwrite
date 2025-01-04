@@ -65,7 +65,7 @@ export class Model extends dbwrite {
     return documents.documents;
   }
 
-  async createDocument(data: Schema): Promise<Models.Document> {
+  async createDocument(data: Record<string, any>): Promise<Models.Document> {
     dbwrite.checkConnection("createDocument");
     this.schema.validateSchema(data);
 
