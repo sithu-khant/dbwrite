@@ -24,6 +24,7 @@ const schema = new Schema({
   isActive: {
     type: "Boolean",
     required: true,
+    default: true,
   },
   createdAt: {
     type: "Datetime",
@@ -42,17 +43,17 @@ const schema = new Schema({
     min: 1,
     max: 5,
   },
-  relatedUser: {
-    type: "Relationship",
-    relation: {
-      relatedCollectionId: "users", // Related collection ID
-      field: "user_id", // Related field in the "users" collection
-      type: "OneToOne", // Relationship type
-      twoWay: true, // Two-way relationship
-      twoWayKey: "related_user_id", // Key for two-way relationship
-      onDelete: "SetNull", // onDelete behavior
-    },
-  },
+  // relatedUser: {
+  //   type: "Relationship",
+  //   relation: {
+  //     relatedCollectionId: "users", // Related collection ID
+  //     field: "user_id", // Related field in the "users" collection
+  //     type: "OneToOne", // Relationship type
+  //     twoWay: true, // Two-way relationship
+  //     twoWayKey: "related_user_id", // Key for two-way relationship
+  //     onDelete: "SetNull", // onDelete behavior
+  //   },
+  // },
 });
 
 dbwrite.connect(
@@ -73,7 +74,7 @@ const TestModel = new Model(
   schema
 );
 
-console.log(await TestModel.listDocuments());
+// console.log(await TestModel.listDocuments());
 
 // console.log(await dbwrite.getDatabase(process.env.DATABASE_ID!));
 

@@ -55,11 +55,11 @@ export class Database extends dbwrite {
     permissions: string[] = [],
     documentSecurity = false,
     enabled = false
-  ): Promise<Models.Collection | undefined> {
+  ): Promise<Models.Collection> {
     dbwrite.checkConnection("createCollection");
 
     try {
-      await this.getCollection(collectionId);
+      return await this.getCollection(collectionId);
     } catch {
       const databases = dbwrite.initDatabases();
       const result = await databases.createCollection(

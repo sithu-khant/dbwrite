@@ -102,7 +102,7 @@ export class Schema {
   ) {
     for (const key in this.fields) {
       const field = this.fields[key];
-      console.log(key);
+      console.log(`Dbwrite: Creating "${key}" attribute...`);
 
       // String attribute
       if (field.type === "String") {
