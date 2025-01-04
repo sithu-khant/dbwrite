@@ -5,3 +5,4 @@
   - [Database](api/database.md)
   - [Schema](api/schema.md)
   - [Model](api/model.md)
+- [**Type**](type/types.md)
