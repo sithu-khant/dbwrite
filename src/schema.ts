@@ -4,49 +4,15 @@ import {
   type Databases,
 } from "node-appwrite";
 
-// Define the valid field types
-// "String" | "Integer" | "Float" | "Boolean" | "Datetime" | "Email" | "IP" | "URL" | "Enum" | "Relationship"
-type FieldType =
-  | "String"
-  | "Integer"
-  | "Float"
-  | "Boolean"
-  | "Datetime"
-  | "Email"
-  | "IP"
-  | "URL"
-  | "Enum"
-  | "Relationship";
-
-type FieldDefinition = {
-  type: FieldType;
-  required?: boolean;
-  default?: any;
-  array?: boolean;
-  min?: number;
-  max?: number;
-  enum?: string[]; // For Enum type
-  relation?: {
-    relatedCollectionId: string; // The related collection ID
-    field: string; // The field in the related collection
-    type?: "OneToOne" | "OneToMany" | "ManyToMany"; // Optional relationship type
-    twoWay?: boolean; // Optional two-way relationship
-    twoWayKey?: string; // Optional key for two-way relationship
-    onDelete?: "Cascade" | "Restrict" | "SetNull"; // Optional onDelete behavior
-  };
-};
-
-type SchemaOptions = {
-  _deletedAt?: boolean;
-};
+import type { SchemaFieldTypes, SchemaFieldOptions } from "./types";
 
 export class Schema {
-  fields: Record<string, FieldDefinition>;
-  options: SchemaOptions;
+  fields: Record<string, SchemaFieldTypes>;
+  options: SchemaFieldOptions;
 
   constructor(
-    fields: Record<string, FieldDefinition>,
-    options: SchemaOptions = {}
+    fields: Record<string, SchemaFieldTypes>,
+    options: SchemaFieldOptions = {}
   ) {
     this.fields = fields;
     this.options = options;

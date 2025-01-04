@@ -50,6 +50,7 @@ All the new contributors are always welcome! Please make a pull request. Please 
   - (1.4.02) - Committed for safety. Started writing schema codes.
   - (1.4.03) - Renamed type names.
   - (1.4.04) - Testing codes. Able to create attributes, but don't know why it is only created 6 attributes.
+  - (1.4.05) - Seperated types.
 - Fri Jan 3, 2025
   - (1.3.01) - Made schema as required property to create a new collection.
   - (1.3.02) - Added document operation codes.

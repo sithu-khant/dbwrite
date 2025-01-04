@@ -1,6 +1,7 @@
 /src
 /node_modules
 /docs
+/test
 
 CNAME
 .env
