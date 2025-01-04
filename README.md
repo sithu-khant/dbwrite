@@ -48,6 +48,7 @@ All the new contributors are always welcome! Please make a pull request. Please 
 - Sat Jan 4, 2025
   - (1.4.01) - Fixed bug, but need to do tests.
   - (1.4.02) - Committed for safety. Started writing schema codes.
+  - (1.4.03) - Renamed type names.
 - Fri Jan 3, 2025
   - (1.3.01) - Made schema as required property to create a new collection.
   - (1.3.02) - Added document operation codes.

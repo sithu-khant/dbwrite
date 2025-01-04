@@ -6,51 +6,51 @@ import { Schema } from "../src/schema";
 
 const schema = new Schema({
   name: {
-    type: String,
+    type: "String",
     required: true,
     max: 100,
   },
   age: {
-    type: Number,
+    type: "Integer",
     required: true,
     min: 18,
     max: 100,
   },
   email: {
-    type: String,
+    type: "Email",
     enum: ["email"],
     required: true,
   },
   isActive: {
-    type: Boolean,
+    type: "Boolean",
     required: true,
   },
   createdAt: {
-    type: Date,
+    type: "Datetime",
     required: true,
   },
   status: {
-    type: String,
+    type: "Enum",
     enum: ["active", "inactive", "suspended"],
     required: true,
     default: "active",
   },
   tags: {
-    type: [String],
+    type: "String",
     required: true,
     array: true,
     min: 1,
     max: 5,
   },
   relatedUser: {
-    type: String,
+    type: "Relationship",
     relation: {
       relatedCollectionId: "users", // Related collection ID
       field: "user_id", // Related field in the "users" collection
-      type: RelationshipType.OneToOne, // Relationship type
+      type: "OneToOne", // Relationship type
       twoWay: true, // Two-way relationship
       twoWayKey: "related_user_id", // Key for two-way relationship
-      onDelete: RelationMutate.SetNull, // onDelete behavior
+      onDelete: "SetNull", // onDelete behavior
     },
   },
 });
@@ -73,7 +73,7 @@ const TestModel = new Model(
   schema
 );
 
-// console.log(await SubscriptionModel.listDocuments());
+console.log(await TestModel.listDocuments());
 
 // console.log(await dbwrite.getDatabase(process.env.DATABASE_ID!));
 
