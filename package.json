@@ -1,6 +1,6 @@
 {
   "name": "dbwrite",
-  "description": "DOM-like tool for Appwrite databases.",
+  "description": "Object Document Modeling (ODM) for Appwrite databases.",
   "version": "0.0.1",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

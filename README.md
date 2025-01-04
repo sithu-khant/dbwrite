@@ -2,7 +2,14 @@
 
 ## NOTICE: Work in progress
 
-DOM-like tool for Appwrite databases.
+Object Document Modeling (ODM) for Appwrite databases.
+
+![NPM Version](https://img.shields.io/npm/v/dbwrite)
+![npm bundle size](https://img.shields.io/bundlephobia/min/dbwrite)
+![NPM Downloads](https://img.shields.io/npm/dw/dbwrite)
+![GitHub License](https://img.shields.io/github/license/sithu-khant/dbwrite)
+
+[![NPM](https://nodei.co/npm/dbwrite.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/dbwrite)
 
 ## Documentation
 
@@ -23,6 +30,10 @@ bun add dbwrite
 ```bash
 npm i dbwrite
 ```
+
+## Sponsors
+
+If you want to sponsor or donate Dbwrite, please email me [[mail](mailto:sithuknt@gmail.com)]. Your company name or your name will be listed here.
 
 ## Resources
 
@@ -51,6 +62,7 @@ All the new contributors are always welcome! Please make a pull request. Please 
   - (1.4.03) - Renamed type names.
   - (1.4.04) - Testing codes. Able to create attributes, but don't know why it is only created 6 attributes.
   - (1.4.05) - Seperated types.
+  - (1.4.06) - Updated readme.
 - Fri Jan 3, 2025
   - (1.3.01) - Made schema as required property to create a new collection.
   - (1.3.02) - Added document operation codes.
