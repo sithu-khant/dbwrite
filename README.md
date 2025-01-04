@@ -73,6 +73,7 @@ All the new contributors are always welcome! Please make a pull request. Please 
   - (1.4.14) - Checked schema class docs.
   - (1.4.15) - Started testing again before publish.
   - (1.4.16) - Found bugs. Start fixing now.
+  - (1.4.17) - Still getting a tiny bug. Published `0.0.2` to npm.
 - Fri Jan 3, 2025
   - (1.3.01) - Made schema as required property to create a new collection.
   - (1.3.02) - Added document operation codes.

@@ -67,6 +67,7 @@ export class Model extends dbwrite {
 
   async createDocument(data: Record<string, any>): Promise<Models.Document> {
     dbwrite.checkConnection("createDocument");
+    await this.checkCollectionExists();
     this.schema.validateSchema(data);
 
     const databases = dbwrite.initDatabases();
@@ -76,6 +77,19 @@ export class Model extends dbwrite {
       ID.unique(),
       data
     );
+  }
+
+  private async checkCollectionExists() {
+    try {
+      await this.database.getCollection(this.collectionId);
+    } catch (error) {
+      // If collection doesn't exist, create it
+      await this.database.createCollection(
+        this.collectionId,
+        this.collectionName,
+        this.schema
+      );
+    }
   }
 
   async getDocument(
