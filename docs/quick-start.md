@@ -144,7 +144,7 @@ This will delete the book with the specified `bookId`.
 Here’s the complete code that sets up the bookstore:
 
 ```js
-import { Database, Model, Schema } from "dbwrite";
+import { Database, Model, Schema, dbwrite } from "dbwrite";
 
 // Connect to Appwrite
 dbwrite.connect(

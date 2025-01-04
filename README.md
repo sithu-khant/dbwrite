@@ -67,6 +67,7 @@ All the new contributors are always welcome! Please make a pull request. Please 
   - (1.4.08) - Added the docs for dbwrite class.
   - (1.4.09) - Added docs for all classes with the help of AI.
   - (1.4.10) - Added favicon. Added the docs.
+  - (1.4.11) - Checked databsae class docs.
 - Fri Jan 3, 2025
   - (1.3.01) - Made schema as required property to create a new collection.
   - (1.3.02) - Added document operation codes.

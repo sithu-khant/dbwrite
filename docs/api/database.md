@@ -111,7 +111,9 @@ console.log("Collection deleted");
 
 ## Methods
 
-### `constructor(databaseId: string, databaseName: string)`
+### constructor
+
+##### `constructor(databaseId: string, databaseName: string)`
 
 Creates a new `Database` instance. The constructor automatically calls `dbwrite.createDatabase` to create the database if it does not already exist.
 
@@ -119,19 +121,25 @@ Creates a new `Database` instance. The constructor automatically calls `dbwrite.
   - `databaseId`: The ID of the database.
   - `databaseName`: The name of the database.
 
-### get `id(): string`
+### id
+
+##### get `id(): string`
 
 Returns the ID of the current database.
 
 - **Returns:** The `databaseId` string.
 
-### get `name(): string`
+### name
+
+##### get `name(): string`
 
 Returns the name of the current database.
 
 - **Returns:** The `databaseName` string.
 
-### `listCollections(queries: string[] = [], search: string = ""): Promise<Models.CollectionList>`
+### listCollections
+
+##### `listCollections(queries: string[] = [], search: string = ""): Promise<Models.CollectionList>`
 
 Lists all collections in the current database. Optionally, you can provide query parameters or a search string.
 
@@ -142,7 +150,9 @@ Lists all collections in the current database. Optionally, you can provide query
 
 - **Returns:** A promise that resolves with a list of collections.
 
-### `getCollection(collectionId: string): Promise<Models.Collection>`
+### getCollection
+
+##### `getCollection(collectionId: string): Promise<Models.Collection>`
 
 Retrieves a specific collection by its ID.
 
@@ -152,7 +162,9 @@ Retrieves a specific collection by its ID.
 
 - **Returns:** A promise that resolves with the requested collection.
 
-### `createCollection(collectionId: string, collectionName: string, schema: Schema, permissions: string[] = [], documentSecurity = false, enabled = false): Promise<Models.Collection>`
+### createCollection
+
+##### `createCollection(collectionId: string, collectionName: string, schema: Schema, permissions: string[] = [], documentSecurity = false, enabled = false): Promise<Models.Collection>`
 
 Creates a new collection within the current database. If the collection already exists, it will be returned instead.
 
@@ -167,7 +179,9 @@ Creates a new collection within the current database. If the collection already 
 
 - **Returns:** A promise that resolves with the created or existing collection.
 
-### `updateCollection(collectionId: string, collectionName: string, permissions: string[] = [], documentSecurity = false, enabled = false): Promise<Models.Collection>`
+### updateCollection
+
+##### `updateCollection(collectionId: string, collectionName: string, permissions: string[] = [], documentSecurity = false, enabled = false): Promise<Models.Collection>`
 
 Updates the properties of an existing collection.
 
@@ -181,7 +195,9 @@ Updates the properties of an existing collection.
 
 - **Returns:** A promise that resolves with the updated collection.
 
-### `deleteCollection(collectionId: string): Promise<void>`
+### deleteCollection
+
+##### `deleteCollection(collectionId: string): Promise<void>`
 
 Deletes a specific collection from the current database.
 
