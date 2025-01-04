@@ -45,6 +45,8 @@ All the new contributors are always welcome! Please make a pull request. Please 
 
 ## Logs
 
+- Sat Jan 4, 2025
+  - (1.4.01) - Fixed bug, but need to do tests.
 - Fri Jan 3, 2025
   - (1.3.01) - Made schema as required property to create a new collection.
   - (1.3.02) - Added document operation codes.

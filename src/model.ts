@@ -26,11 +26,23 @@ export class Model extends dbwrite {
   }
 
   private async init(): Promise<void> {
-    await this.database.createCollection(
-      this.collectionId,
-      this.collectionName,
-      this.schema
-    );
+    try {
+      await dbwrite
+        .createDatabase(this.database.id, this.database.name)
+        .then(async () => {
+          await this.database.createCollection(
+            this.collectionId,
+            this.collectionName,
+            this.schema
+          );
+        });
+    } catch {
+      await this.database.createCollection(
+        this.collectionId,
+        this.collectionName,
+        this.schema
+      );
+    }
   }
 
   get id(): string {

@@ -34,16 +34,16 @@ const SubscriptionDB = new Database(
   process.env.DATABASE_NAME!
 );
 
-const SubscriptionModel = new Model(
-  SubscriptionDB,
-  process.env.COLLECTION_ID!,
-  process.env.COLLECTION_NAME!,
-  schema
-);
+// const SubscriptionModel = new Model(
+//   SubscriptionDB,
+//   process.env.COLLECTION_ID!,
+//   process.env.COLLECTION_NAME!,
+//   schema
+// );
 
 // console.log(await SubscriptionModel.listDocuments());
 
 // console.log(await dbwrite.getDatabase(process.env.DATABASE_ID!));
 
 // dbwrite.getDatabase(process.env.DATABASE_ID!);
-// dbwrite.deleteDatabase(process.env.DATABASE_ID!);
+dbwrite.deleteDatabase(process.env.DATABASE_ID!);
