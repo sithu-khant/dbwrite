@@ -28,35 +28,7 @@ export class Schema {
         throw new Error(`Field "${key}" is required.`);
       }
 
-      // Check field types
-      if (field.type && typeof data[key] !== typeof field.default) {
-        throw new Error(
-          `Field "${key}" must be of type ${typeof field.default}.`
-        );
-      }
-
-      // Check Enum values
-      if (field.enum && !field.enum.includes(data[key])) {
-        throw new Error(
-          `Field "${key}" must be one of: ${field.enum.join(", ")}.`
-        );
-      }
-
-      // Check array length for Array type
-      if (field.array && Array.isArray(data[key])) {
-        if (field.min && data[key].length < field.min) {
-          throw new Error(
-            `Field "${key}" must have at least ${field.min} items.`
-          );
-        }
-        if (field.max && data[key].length > field.max) {
-          throw new Error(
-            `Field "${key}" must have no more than ${field.max} items.`
-          );
-        }
-      }
-
-      // Additional validations for other field types can go here...
+      // TODO: Implement more... validate more...
     }
   }
 
