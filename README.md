@@ -70,6 +70,7 @@ All the new contributors are always welcome! Please make a pull request. Please 
   - (1.4.11) - Checked databsae class docs.
   - (1.4.12) - Checked dbwrite class docs.
   - (1.4.13) - Checked model class docs.
+  - (1.4.14) - Checked schema class docs.
 - Fri Jan 3, 2025
   - (1.3.01) - Made schema as required property to create a new collection.
   - (1.3.02) - Added document operation codes.

@@ -84,7 +84,9 @@ await schema.createAttributes(
 
 ## Methods
 
-### `constructor(fields: Record<string, SchemaFieldTypes>, options: SchemaFieldOptions = {})`
+### constructor
+
+##### `constructor(fields: Record<string, SchemaFieldTypes>, options: SchemaFieldOptions = {})`
 
 Creates a new `Schema` instance with the provided fields and options.
 
@@ -92,7 +94,9 @@ Creates a new `Schema` instance with the provided fields and options.
   - `fields`: A record of fields where the key is the field name and the value is the field configuration (type, required, etc.).
   - `options`: Additional options for the schema (optional).
 
-### `validateSchema(data: Record<string, any>): void`
+### validateSchema
+
+##### `validateSchema(data: Record<string, any>): void`
 
 Validates the incoming data against the defined schema. This method checks for required fields, correct data types, enum values, and array length constraints.
 
@@ -102,7 +106,9 @@ Validates the incoming data against the defined schema. This method checks for r
 
 - **Throws:** Errors if validation fails, with a descriptive error message indicating the issue.
 
-### `createAttributes(initDatabases: Databases, databaseId: string, collectionId: string): Promise<void>`
+### createAttributes
+
+##### `createAttributes(initDatabases: Databases, databaseId: string, collectionId: string): Promise<void>`
 
 Creates the attributes defined in the schema in the Appwrite collection. This method ensures the proper field types are created in the collection based on the schema definition.
 
