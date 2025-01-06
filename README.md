@@ -56,6 +56,8 @@ All the new contributors are always welcome! Please make a pull request. Please 
 
 ## Logs
 
+- Mon Jan 6, 2025
+  - (1.6.01) - Added description to the docs.
 - Sat Jan 4, 2025
   - (1.4.01) - Fixed bug, but need to do tests.
   - (1.4.02) - Committed for safety. Started writing schema codes.
